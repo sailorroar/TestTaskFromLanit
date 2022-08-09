@@ -1,0 +1,5 @@
+pageSteps\ProductSelectionPageStep.class
+pageSteps\PageSteps.class
+pageSteps\WaitHelper.class
+pageSteps\ProductPage.class
+junitTests\RunCucumberTest.class
