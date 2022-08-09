@@ -6,13 +6,14 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import static Steps.BeforeStep.driver;
+import static Steps.TakeScreenshotStep.takeScreenshot;
 
 public class ProductSelectionPageStep {
 
@@ -68,11 +69,21 @@ public class ProductSelectionPageStep {
             driver.findElement(showAll).click();
         }
         searchAndClickElement(paramsLocator);
+        try {
+            takeScreenshot("FilterTheListOfPhone");
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 
     @When("Принять фильтры")
     public void applyFilters() {
         searchAndClickElement(applyButton);
+        try {
+            takeScreenshot("applyFilters");
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 
     @When("Отсортировать список смартфонов {string}")
@@ -82,12 +93,22 @@ public class ProductSelectionPageStep {
         WaitHelper wait = new WaitHelper();
         wait.waitElementToBeClickable(defaultSorting);
         wait.waitElementToBeClickable(sortingTypeLocator);
+        try {
+            takeScreenshot("sorting");
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 
     @When("Выбрать первый смартфон в списке и перейти на страницу товара")
     public void selectionProduct() {
         waitingForAFullLadOfProduct();
         new WaitHelper().waitElementToBeClickable(By.xpath("//a[@class=\"catalog-product__name ui-link ui-link_black\"]"));
+        try {
+            takeScreenshot("selectionProduct");
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 
 }

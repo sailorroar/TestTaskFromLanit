@@ -5,7 +5,10 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 
+import java.io.IOException;
 import java.time.Duration;
+
+import static Steps.TakeScreenshotStep.takeScreenshot;
 
 public class BeforeStep {
 
@@ -22,6 +25,11 @@ public class BeforeStep {
         driver.manage().window().maximize();
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        try {
+            takeScreenshot("openWebSite");
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 
 }

@@ -1,13 +1,17 @@
 package Steps.pageSteps;
 
 import Helpers.Helpers;
+import Steps.TakeScreenshotStep;
 import WaitHelpers.WaitHelper;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
+
 import static Steps.BeforeStep.driver;
+import static Steps.TakeScreenshotStep.*;
 
 public class ProductPage {
 
@@ -22,5 +26,11 @@ public class ProductPage {
         WebElement typeBlock = driver.findElement(By.xpath("//div[text()=' " + type + " ']"));
         String actual = typeBlock.findElement(By.xpath("//div[text()=' " + value + "']")).getText();
         Assert.assertEquals(value, actual);
+        try {
+            takeScreenshot("performanceComparison");
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
     }
 }
